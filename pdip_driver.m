@@ -42,7 +42,13 @@ hold on
 for i = 1:N
     plot(lu_cond{i},'b')
     plot(ldl_cond{i},'r')
+    
 end
 
+p1 = plot(NaN,NaN,'b');
+p2 = plot(NaN,NaN,'r')
+legend([p1,p2],{'Original KKT', 'Symmetrized KKT'})
 set(gca,'YScale','log')
+xlabel('Iteration')
+ylabel('Condition number')
 hold off 
