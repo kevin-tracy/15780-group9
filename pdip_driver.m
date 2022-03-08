@@ -24,14 +24,13 @@ reg = 1e-6;
 % [x,s,z,y,cond_hist,iter,success] = solve_qp_lu(qp, verbose, atol, easy_start, max_iters);
 [x,s,z,y,cond_hist,iter,success] = solve_qp_ldl(qp, verbose, atol, easy_start, max_iters,reg);
 
-N = 100 
+N = 100
 lu_cond = cell(N,1);
 ldl_cond = cell(N,1)
 for i = 1:N
     [qp] = gen_qp(nx,ns,ny);
     [x,s,z,y,lu_cond{i},iter,success] = solve_qp_lu(qp, verbose, atol, easy_start, max_iters);
     [x,s,z,y,ldl_cond{i},iter,success] = solve_qp_ldl(qp, verbose, atol, easy_start, max_iters,reg);
-
 end
      
 
@@ -41,10 +40,10 @@ hold on
 % plot(cond_hist)
 for i = 1:N
     plot(lu_cond{i},'b')
-    plot(ldl_cond{i},'r')
-    
+    plot(ldl_cond{i},'r') 
 end
 
+set(gca,'FontSize', 18)
 p1 = plot(NaN,NaN,'b');
 p2 = plot(NaN,NaN,'r')
 legend([p1,p2],{'Original KKT', 'Symmetrized KKT'})
